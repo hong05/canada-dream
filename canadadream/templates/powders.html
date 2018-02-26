@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <h1>Powders</h1>
+  <ul>{% for powder in powders %}
+    <li><a href="powder/{{powders.name}}">{{powder.id}}</a></li>
+  {% endfor %}</ul>
+{% endblock %}
