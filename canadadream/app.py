@@ -3,6 +3,7 @@ from data import Powders
 from flask_mysqldb import MySQL
 from wtforms import Form,StringField,TextAreaField,PasswordField,validators
 from passlib.hash import sha256_crypt
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -14,7 +15,6 @@ app.config['MYSQL_DB'] = 'canadadream'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 #init MYSQL
 mysql = MySQL(app)
-
 
 Powders = Powders()
 
@@ -35,7 +35,6 @@ def powder(id):
     return render_template('powder.html',id=id)
 
 class RegisterForm(Form):
-    name = StringField('Name',[validators.Length(min=1,max=50)])
     username = StringField('Username',[validators.Length(min=1,max=20)])
     password = PasswordField('Password',[validators.Length(min=1,max=20)])
     email = StringField('Email',[validators.DataRequired()])
@@ -44,23 +43,56 @@ class RegisterForm(Form):
 def register():
     form = RegisterForm(request.form)
     if request.method =='POST' and form.validate():
-        name = form.name.data
         username =form.username.data
         password =sha256_crypt.encrypt(str(form.password.data))
         email=form.email.data
 
         #create cursor
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO users(name,username,password,email) Values(%s,%s,%s,%s)",(name,username,password,email))
+        cur.execute('INSERT INTO users(username,password,email) Values(%s,%s,%s)',(username,password,email))
 
         #commit to db
         mysql.connection.commit()
 
         cur.close()
-        flash("Successfully Registered",'success')
+        flash('Successfully Registered','success')
         return redirect(url_for('index'))
 
     return render_template('register.html',form=form)
+
+@app.route('/login',methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        passwordInput = request.form['password']
+
+        cur = mysql.connection.cursor()
+        result = cur.execute('SELECT * from users WHERE username=%s',[username])
+        if result > 0:
+            data = cur.fetchone()
+            password = data['password']
+            if sha256_crypt.verify(passwordInput,password):
+                session['logged_in'] = 'True'
+                session['username'] = username
+                flash('You are now logged in','success')
+                return redirect(url_for('index'))
+
+            else:
+                return render_template('login.html',error='password incorrect')
+        else:
+            return render_template('login.html',error='user not found')
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logged out','success')
+    return redirect(url_for('login'))
+
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
 
 
 if __name__=='__main__':
