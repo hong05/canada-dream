@@ -1,0 +1,69 @@
+.container{
+  margin: 50px 100px;
+  width: 100%;
+}
+.path{
+  margin-bottom: 20px;
+  font-size: 110%;
+  margin-bottom: 30px;
+}
+a{
+  color: black;
+}
+.leftMenu{
+  width: 160px;
+  float: left;
+}
+.cataLabel{
+  font-size: 110%;
+  border-bottom: 1px solid brown;
+  color: brown;
+}
+ul.cataList{
+  clear: both;
+  list-style-type: square;
+  margin-left: -10px;
+  margin-bottom: 20px;
+}
+li.cata{
+  margin-bottom: 4px;
+}
+.rightmenu{
+  margin-left: 30px;
+  /*border: 1px solid black;*/
+  float:left;
+  width: 65%;
+  margin-top: -50px;
+}
+p.goodsTitle{
+  font-family: Apple Chancery, cursive;
+  font-size: 35px;
+  margin:-5px 0 20px 0;
+  padding-left: 10px;
+}
+.goodsRow{
+  width: 100%;
+  text-align: center;
+}
+.goodsWrap{
+  width: 200px;
+  height: 230px;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid silver;
+  border-radius: 5px;
+  text-align: center;
+  margin: 5px;
+  float: left;
+
+}
+.goodsImg{
+  width: auto;
+  height: 150px;
+  overflow: hidden;
+}
+.goodsName{
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: 1px solid silver;
+}
