@@ -1,7 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <h1>{{id}}</h1>
-
+<br><br>
+{% for powder in powders %}
+{{powder.name}}
+{% endfor %}
 
 {% endblock %}

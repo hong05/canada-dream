@@ -1,0 +1,1 @@
+insert into powders (id,brand,name,price) values (‘ps1r’,’similac’,’雅培阶段一’,25.99);

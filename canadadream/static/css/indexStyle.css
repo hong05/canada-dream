@@ -35,7 +35,7 @@ li{
   float: left;
 }
 
-li a{
+li a.navA{
   color: white;
   line-height: normal;
   text-decoration: none;

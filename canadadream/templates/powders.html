@@ -15,7 +15,7 @@
     <div class='leftMenu'>
       <p class='cataLabel'>品牌</p>
       <ul class="cataList">
-        <li class="cata">美赞成 (Emfamil)</li>
+        <li class="cata"><a href="powder/enfamil">美赞成 (Emfamil)</a></li>
         <li class="cata">雅培 (Similac)</li>
         <li class="cata">雀巢 (Nestle)</li>
       </ul>
@@ -31,88 +31,16 @@
     <div class = 'rightmenu'>
       <p class = "goodsTitle"> Baby Fomula</p>
       <div class="goodsRow">
+      {% for powder in powders %}
         <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/enfamil1_reg.png"/></span>
-          <div class="goodsName">美赞成阶段一</div><h4>$25</h4>
+          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/{{powder.name}}.png"/></span>
+          <div class="goodsName">{{powder.name}}</div><h4>${{powder.price}}</h4>
         </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/enfamil1_gen.png"/></span>
-          <div class="goodsName">美赞成阶段一温和配方</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/enfamil1_thick.png"/></span>
-          <div class="goodsName">美赞成阶段一浓稠配方</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/enfamil2_reg.png"/></span>
-          <div class="goodsName">美赞成阶段二</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/enfamil3_reg.png"/></span>
-          <div class="goodsName">美赞成阶段三</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/enfamil3_van.png"/></span>
-          <div class="goodsName">美赞成阶段三香草口味</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/nestle1.png"/></span>
-          <div class="goodsName">雀巢阶段一</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/nestle1_DHA.png"/></span>
-          <div class="goodsName">雀巢阶段一DHA配方</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/nestle1_omg.png"/></span>
-          <div class="goodsName">雀巢阶段一Omega配方</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/nestle2.png"/></span>
-          <div class="goodsName">雀巢阶段二</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/nestle2_DHA.png"/></span>
-          <div class="goodsName">雀巢阶段二DHA配方</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/nestle3.png"/></span>
-          <div class="goodsName">雀巢阶段三</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/similac1.png"/></span>
-          <div class="goodsName">雅培阶段一</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/similac1_con.png"/></span>
-          <div class="goodsName">雅培阶段一浓缩配方</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/similac1_noomg.png"/></span>
-          <div class="goodsName">雅培阶段一无Omega</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/similac1_sen.png"/></span>
-          <div class="goodsName">雅培阶段一温和配方</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/similac2.png"/></span>
-          <div class="goodsName">雅培阶段二</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/similac2_noomg.png"/></span>
-          <div class="goodsName">雅培阶段二无Omega</div><h4>$25</h4>
-        </div>
-        <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="static/images/powder/similac3.png"/></span>
-          <div class="goodsName">雅培阶段三</div><h4>$25</h4>
-        </div>
+      {% endfor %}
+
       </div>
     </div>
   </div>
-  <!--
-  <ul>{% for powder in powders %}
-    <li><a href="powder/{{powders.name}}">{{powder.id}}</a></li>
-  {% endfor %}</ul>
--->
+
+
 {% endblock %}

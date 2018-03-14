@@ -1,9 +1,11 @@
+
+
 def Powders():
      powders = [
         {
             'id':"pe1",
-            'brand':'Emfamil',
-            'name':'Enfamil A+ Infant Formula',
+            'brand':'Enfamil',
+            'name':'enfamil1_reg',
             'stage':1,
             'min-age':0,
             'max-age':6,

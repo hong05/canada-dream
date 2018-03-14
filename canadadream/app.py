@@ -24,11 +24,30 @@ def index():
 
 @app.route('/powders')
 def powders():
-    return render_template('powders.html',powders=Powders)
+    powdersList=[]
+    cur = mysql.connection.cursor()
+    result = cur.execute('SELECT * from powders')
+    while True:
+        row = cur.fetchone()
+        if row == None:
+            break
+        powdersList.append(row)
+    print powdersList
 
-@app.route('/powder/<string:id>/')
-def powder(id):
-    return render_template('powder.html',id=id)
+    return render_template('powders.html',powders=powdersList)
+
+@app.route('/powder/<string:brand>/')
+def powder(brand):
+    powdersList=[]
+    cur = mysql.connection.cursor()
+    result = cur.execute('SELECT * from powders WHERE brand=%s',[brand])
+    while True:
+        row = cur.fetchone()
+        if row == None:
+            break
+        powdersList.append(row)
+    print powdersList
+    return render_template('powder.html',powders=powdersList)
 
 class RegisterForm(Form):
     username = StringField('Username',[validators.Length(min=1,max=20)])
