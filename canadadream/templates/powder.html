@@ -1,9 +1,32 @@
 {% extends 'layout.html' %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shopping.css') }}">
+{% endblock %}
+
+
 {% block body %}
-<br><br>
-{% for powder in powders %}
-{{powder.name}}
-{% endfor %}
+  <div class= 'container'>
+    <div class='path'>
+      <a href='{{ url_for('index') }}'>首页</a>  >  奶粉
+    </div>
+
+    {% include 'includes/_powderMenu.html' %}
+
+    <div class = 'rightmenu'>
+      <p class = "goodsTitle"> Baby Fomula</p>
+      <div class="goodsRow">
+      {% for powder in powders %}
+        <div class="goodsWrap">
+          <span class="imgWrap"><img class="goodsImg" src="/static/images/powder/{{powder.name}}.png"/></span>
+          <div class="goodsName">{{powder.name}}</div><h4>${{powder.price}}</h4>
+        </div>
+      {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
 
 {% endblock %}

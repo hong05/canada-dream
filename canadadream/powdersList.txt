@@ -1,1 +1,3 @@
-insert into powders (id,brand,name,price) values (‘ps1r’,’similac’,’雅培阶段一’,25.99);
+insert into powders (brand,name,price) values (‘ps1r’,’similac’,’雅培阶段一’,25.99);
+
+insert into powders (brand,name,stage,price) values (‘nestle’,’雀巢阶段三’,3,20);

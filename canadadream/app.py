@@ -36,11 +36,24 @@ def powders():
 
     return render_template('powders.html',powders=powdersList)
 
-@app.route('/powder/<string:brand>/')
-def powder(brand):
+@app.route('/powderBYbrand/<string:brand>/')
+def powderBYbrand(brand):
     powdersList=[]
     cur = mysql.connection.cursor()
     result = cur.execute('SELECT * from powders WHERE brand=%s',[brand])
+    while True:
+        row = cur.fetchone()
+        if row == None:
+            break
+        powdersList.append(row)
+    print powdersList
+    return render_template('powder.html',powders=powdersList)
+
+@app.route('/powderBYstage/<string:stage>/')
+def powderBYstage(stage):
+    powdersList=[]
+    cur = mysql.connection.cursor()
+    result = cur.execute('SELECT * from powders WHERE stage=%s',[stage])
     while True:
         row = cur.fetchone()
         if row == None:
