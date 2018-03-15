@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shopping.css') }}">
+{% endblock %}
+
+{% block body %}
+<br><br>
+<div class="searchContainer" style = "margin-top:20px;margin-left:200px;">
+  <h3> “{{keyword}}”的搜索结果</h3><br>
+
+  {%for powder in productList%}
+  <div class="goodsWrap">
+    <span class="imgWrap"><img class="goodsImg" src="/static/images/powder/{{powder.name}}.png"/></span>
+    <div class="goodsName">{{powder.name}}</div><h4>${{powder.price}}</h4>
+  </div>
+</div>
+{%endfor%}
+{% endblock %}

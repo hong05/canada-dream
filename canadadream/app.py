@@ -62,12 +62,34 @@ def powderBYstage(stage):
     print powdersList
     return render_template('powder.html',powders=powdersList)
 
+@app.route('/search', methods=['GET','POST'])
+def search():
+    if request.method =='POST':
+        keyword = request.form['search']
+        print keyword
+    productList=[]
+    cur = mysql.connection.cursor()
+    #result = cur.execute('SELECT * from powders WHERE brand = %s',[keyword])
+    stmt = 'SELECT * FROM powders WHERE name LIKE %s OR brand Like %s'
+    args= ['%'+keyword+'%','%'+keyword+'%']
+    result=cur.execute(stmt,args)
+    
+    while True:
+        row = cur.fetchone()
+        if row == None:
+            break
+        productList.append(row)
+    print productList
+
+    return render_template('search.html',productList=productList, keyword=keyword)
+
+
 class RegisterForm(Form):
     username = StringField('Username',[validators.Length(min=1,max=20)])
     password = PasswordField('Password',[validators.Length(min=1,max=20)])
     email = StringField('Email',[validators.DataRequired()])
 
-@app.route('/register',methods = ['GET','POST'],)
+@app.route('/register',methods = ['GET','POST'])
 def register():
     form = RegisterForm(request.form)
     if request.method =='POST' and form.validate():

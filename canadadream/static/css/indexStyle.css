@@ -47,7 +47,7 @@ li a.navA{
   font-family: Microsoft YaHei;
   margin-top: 4px;
 }
-li a:hover {
+li a.navA:hover {
   background-color: brown;
   opacity: 0.8;
   text-decoration: none;
