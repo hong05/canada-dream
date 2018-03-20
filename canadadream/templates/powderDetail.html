@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class='container top'>
+  <div class='path'>
+    <a href='{{ url_for('index') }}'>首页</a>  >  <a href='{{ url_for('powders') }}'>奶粉</a> > {{powder.name}}
+  </div>
+
+  <div class='productImage'>
+    <img class="bigImage" src='/static/images/powder/{{powder.name}}.png'>
+  </div>
+
+  <div class='productGen'>
+    <div class='nameStage'>
+      <h3>{{powder.name}}</h3>
+      <h4>
+        {% if powder.stage =='1' %}
+          适合年龄段：0 - 12 个月，刚出生的宝宝
+        {% elif powder.stage =='2'%}
+          适合年龄段：12 - 36个月，12个月以上的宝宝
+        {% else %}
+          适合年龄段：18 - 36个月，18个月以上宝宝
+        {% endif %}
+      </h4>
+    </div>
+
+    <div class='price'>
+      <h1 style='font-size:200%;'>$ {{powder.price}}</h1>
+    </div>
+
+    <div class='productWhy'>
+      <h4>DHA的重要性</h4>
+
+  宝宝的大脑在生命的第一年大小翻了一倍。这就是为什么0-12个月是给宝宝补充DHA的重要时段，DHA是一种Omega-3脂肪，也是婴儿迅速增长的大脑的基石。Enfamil A +含有经临床证实的DHA水平。10名将婴儿配方奶粉喂养自己孩子的医生中有9人使用富含DHA的配方*。
+<br><br>
+  <h4>Enfamil A +是一个好的开端，受母乳启发。Enfamil A +：</h4>
+    <ul class='why'>
+      <li class="cata why">是我们最接近母乳的配方</li>
+      <li class="cata why">含有临床证明的DHA水平，是宝宝发育中大脑的重要组成部分</li>
+      <li class="cata why">含有2种膳食纤维，GOS和聚葡萄糖的混合物，软化大便</li>
+      <li class="cata why">易于消化和吸收</li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

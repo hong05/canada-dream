@@ -62,6 +62,14 @@ def powderBYstage(stage):
     print powdersList
     return render_template('powder.html',powders=powdersList)
 
+@app.route('/powderDetail/<string:name>/')
+def powderDetail(name):
+    cur = mysql.connection.cursor()
+    result = cur.execute('SELECT * from powders WHERE name=%s',[name])
+    if result > 0:
+        powder = cur.fetchone()
+    return render_template('powderDetail.html',powder=powder)
+
 @app.route('/search', methods=['GET','POST'])
 def search():
     if request.method =='POST':
@@ -73,7 +81,7 @@ def search():
     stmt = 'SELECT * FROM powders WHERE name LIKE %s OR brand Like %s'
     args= ['%'+keyword+'%','%'+keyword+'%']
     result=cur.execute(stmt,args)
-    
+
     while True:
         row = cur.fetchone()
         if row == None:

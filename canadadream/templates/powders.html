@@ -9,7 +9,7 @@
 {% block body %}
   <div class= 'container'>
     <div class='path'>
-      <a href='{{ url_for('index') }}'>首页</a>  >  奶粉
+      <a href='{{ url_for('index') }}'>首页</a>  >  <a href='{{ url_for('powders') }}'>奶粉</a>
     </div>
 
     {% include 'includes/_powderMenu.html' %}
@@ -19,8 +19,10 @@
       <div class="goodsRow">
       {% for powder in powders %}
         <div class="goodsWrap">
-          <span class="imgWrap"><img class="goodsImg" src="/static/images/powder/{{powder.name}}.png"/></span>
-          <div class="goodsName">{{powder.name}}</div><h4>${{powder.price}}</h4>
+          <a href='/powderDetail/{{powder.name}}'>
+            <span class="imgWrap"><img class="goodsImg" src="/static/images/powder/{{powder.name}}.png"/></span>
+            <div class="goodsName">{{powder.name}}</div><h4>${{powder.price}}</h4>
+          </a>
         </div>
       {% endfor %}
 
